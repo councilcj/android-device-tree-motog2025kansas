@@ -10,7 +10,7 @@ DEVICE_PATH := device/motorola/kansas
 # For building with minimal manifest
 ALLOW_MISSING_DEPENDENCIES := true
 
-# Architecture - FIXED for Dimensity 6300 (No more "generic" error)
+# Architecture
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_ABI := arm64-v8a
@@ -27,8 +27,11 @@ TARGET_2ND_CPU_VARIANT := generic
 TARGET_BOOTLOADER_BOARD_NAME := kansas
 TARGET_NO_BOOTLOADER := true
 
-# Display
-TARGET_SCREEN_DENSITY := 400
+# Display - Precise for 6.7" 720x1604 LCD
+TARGET_SCREEN_DENSITY := 280
+DEVICE_SCREEN_WIDTH := 720
+DEVICE_SCREEN_HEIGHT := 1604
+BOARD_HAS_NO_SELECT_BUTTON := true
 
 # Kernel Configuration
 BOARD_BOOTIMG_HEADER_VERSION := 4
@@ -41,7 +44,6 @@ BOARD_KERNEL_IMAGE_NAME := Image
 # DTB Handling - The "Ghost DTB" Fix
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 BOARD_PREBUILT_DTBIMAGE_DIR := $(DEVICE_PATH)
-# This points to the empty 'dtb' file you created in your repo
 BOARD_PREBUILT_DTBIMAGE := $(DEVICE_PATH)/dtb
 
 # MKBOOTIMG Arguments
@@ -72,11 +74,17 @@ TW_THEME := portrait_hdpi
 TW_EXTRA_LANGUAGES := true
 TW_USE_TOOLBOX := true
 
+# Brightness Configuration (MT6835 Standard)
+TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
+TW_MAX_BRIGHTNESS := 255
+TW_DEFAULT_BRIGHTNESS := 150
+TW_INPUT_BLACKLIST := "hbtp_vm"
+
 # Hack: prevent anti rollback
 PLATFORM_SECURITY_PATCH := 2099-12-31
 VENDOR_SECURITY_PATCH := 2099-12-31
 PLATFORM_VERSION := 16.1.0
 
-# Bypass the SDK version check since the source is older than the device
+# Bypass checks
 BUILD_BROKEN_VENDOR_PROPERTY_CHECK := true
 BUILD_BROKEN_DUP_RULES := true
