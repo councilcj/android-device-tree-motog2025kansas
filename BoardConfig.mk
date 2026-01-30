@@ -4,7 +4,6 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-# Point to your actual folder
 DEVICE_PATH := device/motorola/kansas
 
 # For building with minimal manifest
@@ -33,6 +32,10 @@ DEVICE_SCREEN_WIDTH := 720
 DEVICE_SCREEN_HEIGHT := 1604
 BOARD_HAS_NO_SELECT_BUTTON := true
 
+# Graphics Fix: FORCE Generic Framebuffer to stop the "White-to-Black" Kernel Panic
+RECOVERY_GRAPHICS_FORCE_USE_LINUX_FB := true
+TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
+
 # Kernel Configuration
 BOARD_BOOTIMG_HEADER_VERSION := 4
 BOARD_KERNEL_BASE := 0x40078000
@@ -41,7 +44,14 @@ BOARD_RAMDISK_OFFSET := 0x11080000
 BOARD_KERNEL_TAGS_OFFSET := 0x07808000
 BOARD_KERNEL_IMAGE_NAME := Image
 
-# DTB Handling - The "Ghost DTB" Fix
+# Kernel Command Line - VITAL for Dimensity 6300 / MT6835
+BOARD_KERNEL_CMDLINE := androidboot.boot_devices=soc/11270000.ufshci
+BOARD_KERNEL_CMDLINE += androidboot.init_fatal_reboot_target=fastboot
+BOARD_KERNEL_CMDLINE += loop.max_part=7
+BOARD_KERNEL_CMDLINE += console=tty0
+BOARD_KERNEL_CMDLINE += printk.devkmsg=on
+
+# DTB Handling
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 BOARD_PREBUILT_DTBIMAGE_DIR := $(DEVICE_PATH)
 BOARD_PREBUILT_DTBIMAGE := $(DEVICE_PATH)/dtb
@@ -74,16 +84,17 @@ TW_THEME := portrait_hdpi
 TW_EXTRA_LANGUAGES := true
 TW_USE_TOOLBOX := true
 
-# Brightness Configuration (MT6835 Standard)
+# Brightness Configuration
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
 TW_MAX_BRIGHTNESS := 255
-TW_DEFAULT_BRIGHTNESS := 150
+TW_DEFAULT_BRIGHTNESS := 200
+TW_NO_SCREEN_BLANK := true
 TW_INPUT_BLACKLIST := "hbtp_vm"
 
 # Hack: prevent anti rollback
 PLATFORM_SECURITY_PATCH := 2099-12-31
 VENDOR_SECURITY_PATCH := 2099-12-31
-PLATFORM_VERSION := 16.1.1
+PLATFORM_VERSION := 16.1.2
 
 # Bypass checks
 BUILD_BROKEN_VENDOR_PROPERTY_CHECK := true
