@@ -6,7 +6,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 $(call inherit-product, device/motorola/kansas/device.mk)
 
 # Inherit PBRP/Omni common bits
-$(call inherit-product, vendor/omni/config/common.mk)
+# $(call inherit-product, vendor/omni/config/common.mk)
 
 PRODUCT_DEVICE := kansas
 PRODUCT_NAME := omni_boot
