@@ -56,7 +56,6 @@ TARGET_COPY_OUT_VENDOR := vendor
 
 # Platform - Mediatek Dimensity 6300
 TARGET_BOARD_PLATFORM := mt6835
-BOARD_SYSTEMSDK_VERSIONS := 35
 
 # Recovery
 TARGET_USERIMAGES_USE_EXT4 := true
