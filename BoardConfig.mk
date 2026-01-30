@@ -44,13 +44,13 @@ BOARD_MKBOOTIMG_ARGS := --header_version $(BOARD_BOOTIMG_HEADER_VERSION)
 
 # --- THE "PREBUILT DNA" (The Flicker Fixers) ---
 TARGET_FORCE_PREBUILT_KERNEL := true
-TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/kernel
-BOARD_PREBUILT_DTBIMAGE := $(DEVICE_PATH)/prebuilt/dtb
+TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/kernel
+BOARD_PREBUILT_DTBIMAGE := $(DEVICE_PATH)/dtb.img
 BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 
 # Adding DTBO - This is critical for the MT6835 display driver
-BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/dtbo.img
-BOARD_CUSTOM_DTBOIMG := $(DEVICE_PATH)/prebuilt/dtbo.img
+BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/dtbo.img
+BOARD_CUSTOM_DTBOIMG := $(DEVICE_PATH)/dtbo.img
 
 # --- THE "NO-PANIC" COMMAND LINE ---
 # We keep these clean to let the DTB do the heavy lifting
