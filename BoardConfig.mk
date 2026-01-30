@@ -69,3 +69,6 @@ PLATFORM_SECURITY_PATCH := 2099-12-31
 VENDOR_SECURITY_PATCH := 2099-12-31
 PLATFORM_VERSION := 16.1.0
 
+# Bypass the SDK version check since the source is older than the device
+BUILD_BROKEN_VENDOR_PROPERTY_CHECK := true
+BUILD_BROKEN_DUP_RULES := true
