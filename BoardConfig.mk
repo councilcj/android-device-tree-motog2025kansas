@@ -39,7 +39,7 @@ BOARD_KERNEL_TAGS_OFFSET := 0x07808000
 BOARD_KERNEL_IMAGE_NAME := Image
 
 # DTB Handling - The "Ghost DTB" Fix
-BOARD_INCLUDE_DTB_IN_BOOTIMG := false
+BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 BOARD_PREBUILT_DTBIMAGE_DIR := $(DEVICE_PATH)
 # This points to the empty 'dtb' file you created in your repo
 BOARD_PREBUILT_DTBIMAGE := $(DEVICE_PATH)/dtb
